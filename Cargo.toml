@@ -1,0 +1,9 @@
+[package]
+name = "rs-web-app"
+version = "0.1.4"
+edition = "2024"
+
+[dependencies]
+leptos = {version = "0.7", features = ["csr"]}
+leptos_router = "0.7"
+console_error_panic_hook = "0.1"
