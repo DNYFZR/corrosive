@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>corrosive</title>
+        <link data-trunk rel="copy-dir" href="/public/"/>
+        <link rel="icon" type="image/png" href="./flask_icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link data-trunk rel="rust" data-wasm-opt="0" data-keep-debug=true />
         <style>
@@ -17,6 +19,8 @@
             body {
                 background-color: rgb(0, 0, 0);;
                 color: rgb(6, 140, 100);
+                max-height: 99vh;
+                overflow-y: auto;
                 margin-left: auto;
                 margin-right: auto;
                 text-align: center;
@@ -25,11 +29,26 @@
                 padding: 16px;
             }
 
+            div {
+                padding: 8px;
+            }
+
+            footer {
+                font-size: smaller;
+                position: relative;
+                color: rgb(15, 186, 146);
+                padding: 16px 0;
+                bottom: 1vh;
+                left: 0;
+                right: 0;
+            }
+
             h1, h2, h3, h4 {
                 color: rgb(15, 186, 146);
             }
 
             a {
+                width: inherit;
                 color: inherit;
                 padding: inherit;
                 margin: inherit;
@@ -41,23 +60,48 @@
             }
 
             button {
+                z-index: 2;
                 width: fit-content;
                 background-color: rgb(6, 140, 100);
                 color: rgb(0, 0, 0);
                 font-weight: 600;
                 border-radius: 8px;
                 padding: 12px;
-                margin: 16px;
+                margin: 8px;
             }
 
             .nav {
-                display: flex;
-                /* flex-direction: column; */
-            }
+               background-color: rgb(6, 140, 100);
+               border-radius: 8px;
+               margin-bottom: 2vh;
+            } 
 
             .app-main {
-                display: flex;
-                flex-direction: column;
+                height: 75vh;
+                overflow-y: auto;
+            }
+
+            .popup {
+                z-index: -1;
+                background-color: rgb(15, 186, 146);
+                position: absolute;
+                margin: 0 auto;
+                width: 50vw;
+                height: 60vw;
+                text-align: center;
+            }
+
+            body::-webkit-scrollbar, .app-main::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+                background-color: rgb(6, 140, 100);
+            }
+            body::-webkit-scrollbar-thumb, .app-main::-webkit-scrollbar-thumb {
+                background-color: rgb(6, 140, 100);
+                border-radius: 10px;
+            }
+            body::-webkit-scrollbar-track, .app-main::-webkit-scrollbar-track {
+               background-color: rgb(0, 0, 0)
             }
 
             .row {
