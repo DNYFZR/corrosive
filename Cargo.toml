@@ -1,12 +1,20 @@
 [package]
 name = "corrosive"
-version = "0.1.5"
+version = "0.3.1"
 edition = "2024"
 
 [dependencies]
-leptos = {version = "0.7", features = ["csr"]}
-leptos_router = "0.7"
+leptos = { version = "0.8.15", features = ["csr"] }
+leptos_router = "0.8.11"
 console_error_panic_hook = "0.1"
 
-[package.metadata.leptos] 
-assets-dir = "public" 
+[package.metadata.leptos]
+assets-dir = "public"
+lib-profile-release = "wasm-release"
+
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1

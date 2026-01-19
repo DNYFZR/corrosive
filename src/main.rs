@@ -1,55 +1,61 @@
 // Rust WASM Web App
-// #[allow(dead_code, unused_imports, unused_variables)]
-mod pages;
-mod components;
-use pages::home::Homepage;
-
-use components::{
-    counter::Count,
-    warning::UnderConstruction
-};
-
+#[allow(dead_code, unused_imports, unused_variables)]
+#[allow(non_snake_case)]
 use leptos::prelude::*;
 use leptos_router::{components::*, path};
 
-#[component]
-fn App() -> impl IntoView {
-    view! {
-        <h2>Corrosive</h2> 
-        <AppRouter/>
-        <footer>
-            "🔥 🔥 🔥 Written in Rust & deployed with Web Assembly 🔥 🔥 🔥"
-        </footer>
-    }
-}
+mod components;
+mod pages;
 
-#[component]
-fn AppRouter() -> impl IntoView {
-    view! {
-        <Router>
-            <div class="nav">
-                <nav>
-                    <button><a href="/corrosive/">"Home"</a></button>
-                    <button><a href="/corrosive/counter">"Count"</a></button>
-                    <button><a href="/corrosive/about">"About"</a></button>
-                </nav>
-            </div>
-
-            <div class="app-main">
-                <main>
-                    <Routes fallback=|| "Not found.">
-                        <Route path=path!("/corrosive/") view=Homepage />
-                        <Route path=path!("/corrosive/counter") view=Count />
-                        <Route path=path!("/corrosive/about") view=UnderConstruction />
-                        <Route path=path!("/*any") view=|| view! {<h2>"This is not the way..."</h2>} />
-                    </Routes>
-                </main>
-            </div>
-        </Router>
-    }
-}
+use crate::{
+    components::warnings::{NotFound, UnderConstruction},
+    pages::home::Homepage,
+};
 
 fn main() {
     console_error_panic_hook::set_once();
-    mount_to_body(|| view! {<App/>})
+    mount_to_body(|| view! {<App />})
+}
+
+#[component]
+fn App() -> impl IntoView {
+    let base_url = "corrosive";
+    let (menu, show_menu) = signal(false);
+
+    view! {
+        <div>
+            // App menu
+            <button
+                class="menu-button-container"
+                on:click = move |_| *show_menu.write() = !menu.get()
+            >
+                <img
+                    class="menu-button"
+                    src="./public/menu-128.png"
+                    alt="menu button"
+                />
+            </button>
+
+            // Routing Menu
+            <Router>
+                <Show when=move || menu.get() == true>
+                    <nav class="nav">
+                        <button class="menu-item">
+                            <a href=format!("/{base_url}/")>"Home"</a>
+                        </button>
+                        <button class="menu-item">
+                            <a href=format!("/{base_url}/help")>"Help"</a>
+                        </button>
+                    </nav>
+                </Show>
+
+                <main class="pages">
+                    <Routes fallback = || NotFound>
+                        <Route path=path!("/corrosive/") view=Homepage />
+                        <Route path=path!("/corrosive/help") view=UnderConstruction />
+                    </Routes>
+                </main>
+            </Router>
+        </div>
+    }
 }

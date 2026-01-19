@@ -1,0 +1,120 @@
+* {
+    --color-background: black;
+    --color-accent: teal;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-accent);
+    max-height: 99vh;
+    overflow-y: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.5em;
+    padding: 16px;
+}
+
+body::-webkit-scrollbar,
+.app-main::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-accent);
+}
+
+body::-webkit-scrollbar-thumb,
+.app-main::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent);
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track,
+.app-main::-webkit-scrollbar-track {
+    background-color: var(--color-background);
+}
+
+div {
+    padding: 8px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--color-accent);
+    padding: 12px;
+}
+
+a {
+    width: inherit;
+    color: inherit;
+    padding: inherit;
+    margin: inherit;
+    text-decoration: none;
+}
+
+p {
+    margin: var(--size-2);
+    padding: var(--size-2);
+}
+
+button {
+    background-color: var(--color-background);
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 16px;
+    padding: 12px;
+    margin: 12px;
+    cursor: pointer;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+li {
+    align-self: flex-start;
+}
+
+/* Custom Elements */
+.menu-button-container {
+    display: flex;
+    z-index: 10;
+    position: absolute;
+    background-color: var(--color-background);
+}
+
+.menu-button {
+    width: 24px;
+    height: 24px;
+}
+
+.menu-item {
+    color: white;
+    font-size: 14;
+}
+
+.nav {
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    min-width: 15pc;
+    min-height: 90vh;
+    border: solid 2px var(--color-accent);
+    border-radius: 12px;
+}
+
+.pages {
+    display: flex;
+    flex-direction: column;
+}
