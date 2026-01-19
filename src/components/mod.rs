@@ -1,2 +1,1 @@
-pub mod counter;
-pub mod warning;
+pub mod warnings;
